@@ -14,7 +14,13 @@ int main(void){
 	printf("Welcome to Math Calculator!!!\n");
 	while(choice != 'q' ){
 		//present the menu
+		printf("Please enter a choice: ! for factorial, e for pow(e)r, f for (f)ibonacci, p for (p)rime, q to (q)uit:");
 		//get the user's choice
+		scanf(" %c", &choice); //whenever using %c put a space out front " %c" to consume whitespace
+		//an if statement, that looks at the current choice, and does something different, depending
+		if(choice == 'q' ){
+			printf("Thakns for using Math Claculator! Goodbye!\n");
+		}
 	}
 
 }
