@@ -24,10 +24,34 @@ int is_prime(int number){
 	return result;
 }
 
+
+/*
+this function is an example of a function that accepts some arguments (information)
+it will compute and return the result of the base raised to the exponent
+*/
+double power(double base, int exponent){
+	//this variable will store the result of raising base to exponent
+	double result = 1;
+	//variable to control the loop
+	int i = 0;
+	for(i = 0; i < exponent; i++){
+		result = result * base;
+	}
+	//at the end of any function that computes a value
+	//you need to specify which variable to return as the computed result
+	//in this case the name of our variable is "result"
+	//use the return keyword followed by the name of the variable
+	return result;
+	
+}
+
+
 int main(void){
 	char choice = 0;//this holds the user's menu choice
 	int user_int = 0; // holds integer input from the user
 	int result_int = 0; //holds integer results to show the user some output
+	double user_double = 0 ;//hold an input double
+	double result_double; //hold a double to show the user the result 
 	printf("Welcome to Math Calculator!!!\n");
 	while(choice != 'q' ){
 		//present the menu
@@ -47,6 +71,13 @@ int main(void){
 			} else {
 				printf("%d is NOT prime\n", user_int);
 			}			
+		}else if(choice == 'e'){
+			printf("Please enter a base: \n");
+			scanf("%lf", &user_double);
+			printf("Please enter a positive integer exponent:");
+			scanf("%d", &user_int);
+			result_double = power(user_double, user_int);
+			printf("the result of %lf raised to the power of %d is: %lf\n", user_double, user_int, result_double);
 		}
 	}
 	return 0;//0 indicates the program terminated correctly
