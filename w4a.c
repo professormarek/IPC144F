@@ -25,9 +25,9 @@ int is_prime(int number){
 }
 
 int main(void){
-	char choice = 0;
-	int user_int = 0;
-	int result_int = 0;
+	char choice = 0;//this holds the user's menu choice
+	int user_int = 0; // holds integer input from the user
+	int result_int = 0; //holds integer results to show the user some output
 	printf("Welcome to Math Calculator!!!\n");
 	while(choice != 'q' ){
 		//present the menu
@@ -42,7 +42,11 @@ int main(void){
 			printf("Enter a positive integer:");
 			scanf("%d", &user_int);
 			result_int = is_prime(user_int);
-			//if statement to print out an appropriate message
+			if(result_int == 1){
+				printf("%d is prime\n", user_int);
+			} else {
+				printf("%d is NOT prime\n", user_int);
+			}			
 		}
 	}
 	return 0;//0 indicates the program terminated correctly
