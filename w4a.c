@@ -12,7 +12,10 @@ TODO: improve the description
 int main(void){
 	char choice = 0;
 	printf("Welcome to Math Calculator!!!\n");
-	while( )
+	while(choice != 'q' ){
+		//present the menu
+		//get the user's choice
+	}
 
 }
 
