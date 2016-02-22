@@ -8,6 +8,9 @@ NOTE: we'll use this as a chance to try out passing pointers as arguments to fun
 
 #include <stdio.h>
 
+/*
+this functoin clears the buffer
+*/
 void clearBuffer(void){
 	//variable to store the next character in the buffer
 	char c=0;
@@ -17,6 +20,30 @@ void clearBuffer(void){
 		printf("DEBUG: discarded character in buffer: %c ASCII code: %d\n", c, c);
 	}
 }
+
+/*
+this function computes the gcd of two integers
+the return value is the gcd (a and b are the two numbers for which we are finding the gcd)
+*/
+int findGCD(int a, int b){
+	//declare a loop control variable
+	int i = 0;
+	//delcare a variable to store our best guess at the gcd
+	int gcd = 1;
+	for(i = 1; i <= a; i++){
+		//check to see if i divides both a and b
+		//if it does, it's our best guess at the gcd
+		if(a % i == 0 && b % i == 0){
+			gcd = i;
+		}
+	}
+
+	//at the end of the for loop, gcd will contain the gcd of a and b
+	//how to return it to main?
+	return gcd;
+}
+
+
 
 /*
 this function repeatedly asks the user for two integers
@@ -56,5 +83,8 @@ int main(void){
 	//(think of a name for your function, and it's argumetn types)
 	getIntegers(&numerator, &denominator);
 	//display the numerator and denominator to the user
+	
+	//TODO: use your findGCD function to compute the gcd (store in the gcd variable)
+
 	printf("The greatest common divisor of %d and %d is %d\n", numerator, denominator, gcd);
 }
