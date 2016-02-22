@@ -8,19 +8,37 @@ NOTE: we'll use this as a chance to try out passing pointers as arguments to fun
 
 #include <stdio.h>
 
+void clearBuffer(void){
+	//variable to store the next character in the buffer
+	char c=0;
+	while(c != '\n'){
+		c = getchar();
+		//for debugging purposes, print out c
+		printf("DEBUG: discarded character in buffer: %c ASCII code: %d\n", c, c);
+	}
+}
+
 /*
 this function repeatedly asks the user for two integers
 and will keep asking them until they enter two proper integers
 */
 void getIntegers(int *n, int *d ){
 	//declare temporarly variables to hold user input
-	int num, den;
+	int num=0, den=0;
 	//stores how many integers the user properly entered
 	int count = 0;
 	//prompt the user
 	printf("Enter two integers separated by a space: ");
-	count = scanf("%d %d", &num, &den);
-	printf("DEBUG: count of user input: %d\n", count);
+	while(count != 2 ) {
+		count = scanf("%d %d", &num, &den);
+		clearBuffer();
+		printf("DEBUG: count of user input: %d\n", count);
+		//if the user didn't enter two integers show them a warning
+		if(count != 2 ){
+			//show the error message and new prompt
+			printf("Error: Please enter two integers separated by a space: ");
+		}
+	}
 	//write the values entered by the user into n and d
 	*n = num;
 	*d = den;
