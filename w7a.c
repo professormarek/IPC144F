@@ -75,5 +75,21 @@ int main(void){
 	double price[MAX_BOOKS];
 	//one array to store quantities
 	int quantity[MAX_BOOKS];
+	//this variable stores a user input integer
+	int userInputInt = -1;
+
+
+	printf("welcome to bookstore inventory for books dot com\n");
+	printf("================================================\n");
+
+	//prompt the user to enter ISBN's until 0 is entered
+	while(userInputInt != 0 ){
+		//prompt the user for ISBN
+		printf("Enter a book starting with ISBN (0 to finish):");
+		printf("ISBN: ");
+		//get the integer
+		userInputInt = getUserInteger(0, 9999);
+		printf("DEBUG: user entered: %d\n", userInputInt);
+	}
 
 }
