@@ -47,7 +47,7 @@ double getUserDouble(double minimum, double maximum){
         conditions into more complicated conditions */
         while(userInput < minimum || userInput > maximum){
                 //ask the user to enter a number within the range
-                printf("Enter an integer between %lf and %lf: ", minimum, maximum);
+                printf("Enter an integer between %.2lf and %.2lf: ", minimum, maximum);
                 //validate the input
                 scanf("%lf", &userInput);
                 clearBuffer();
@@ -55,8 +55,41 @@ double getUserDouble(double minimum, double maximum){
         return userInput;
 }
 
+/*
+a debugging function that displays everything in the inventory
+accepts as arugments 3 arrays (isbn, price, quantity)
+and also need to pass the number of things in the arrays as well
 
+this function is an example of passing arrays to a function
+*/
+void debugDisplayArrays(int i[], double p[], int q[], int size){
+	int j;//remember we've already used the name i for the array i[]
+	for(j = 0; j < size; j++){
+		printf("DEBUG: book %d, isbn: %d, price: %.2lf, quantity: %d\n", j, i[j], p[j], q[j]);
+	}
+}
 
+/*
+this function searches the isbn array for the given isbn and returns the price of that book if found
+if the book is not found, print an error message and return 0.0 as the price
+
+I went ahead and implemented it for you, just call it from main - marek
+
+*/
+double searchPrice(int isbn_to_find, int i[], double p[], int count){
+	int j;
+	for(j = 0; j < count ; j++){
+		if(i[j] == isbn_to_find){
+			//if the condition above is true, we have found the book!
+			//so return the price (from the price array named p)
+			return p[j];			
+		}
+	}
+	//if we didn't hit the return statement above we'll reach this point
+	printf("WARNING: ISBN %d not found!\n", isbn_to_find);
+	//return a price of 0.0 as specified
+	return 0.0;
+}
 
 
 /*
@@ -77,7 +110,9 @@ int main(void){
 	int quantity[MAX_BOOKS];
 	//this variable stores a user input integer
 	int userInputInt = -1;
-
+	double userInputDouble = -1;
+	//stores how many books the user has entered
+	int book_count = 0;
 
 	printf("welcome to bookstore inventory for books dot com\n");
 	printf("================================================\n");
@@ -90,6 +125,27 @@ int main(void){
 		//get the integer
 		userInputInt = getUserInteger(0, 9999);
 		printf("DEBUG: user entered: %d\n", userInputInt);
+		if(userInputInt != 0 ){
+			//store the ISBN in the isbn array
+			isbn[book_count] = userInputInt;
+			//ask for the price
+			printf("Price: ");
+			userInputDouble = getUserDouble(0.01, 1000000.0);
+			//store the user's double inside the price array
+			price[book_count] = userInputDouble;
+			//ask for the quantity
+			printf("Quantity: ");
+			userInputInt = getUserInteger(0, 100);
+			//keep track of the number of books entered
+			book_count++;
+		}
 	}
+	//the user is done entering books. 
+	//display the inventory for debugging purposes
+	debugDisplayArrays(isbn, price, quantity, book_count);		
+
+	//write a second loop to prompt the user for ISBN's to search for
+	
+	//call the searchPrice function to search for and display the price of each book
 
 }
