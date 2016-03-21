@@ -13,6 +13,22 @@ struct Weather{
 	float humidity;
 };
 
+/*
+this is a funciton that demonstrates accepting a strcut Weather argument by value (not using a pointer)
+note: a field-by-field copy is made of the struct being passed
+*/
+void testPassingStruct(struct Weather w){
+	//print out the fields
+ 	printf("inside testPassingStruct (before modification): Date %d, Temperature %.1f, Humidity %.1f\n",
+                w.date, w.temperature, w.humidity);
+	//modify the fields
+	w.date = -1;
+	w.temperature = -1.0;
+	w.humidity = -1.0;
+	//print the fields after modification
+ 	printf("inside testPassingStruct (after modification): Date %d, Temperature %.1f, Humidity %.1f\n",
+                w.date, w.temperature, w.humidity); 
+}
 
 
 int main(void){
@@ -37,6 +53,11 @@ int main(void){
  	printf("today_copy (after copy) Date %d, Temperature %.1f, Humidity %.1f\n", 
                 today_copy.date, today_copy.temperature, today_copy.humidity);  
 	
+	//call testPassingStruct(today_copy) to see whether it can modify the orignal object
+	testPassingStruct(today_copy);
+	//print out the values of today_copy's fields to see whether it has changed
+	printf("today_copy (back in main after function call) Date %d, Temperature %.1f, Humidity %.1f\n",
+                today_copy.date, today_copy.temperature, today_copy.humidity);	
 
 
 }
