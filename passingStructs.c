@@ -30,6 +30,38 @@ void testPassingStruct(struct Weather w){
                 w.date, w.temperature, w.humidity); 
 }
 
+/*
+this function is a second attempt at a function that can modify the original values of a struct argument
+it accomplishes this by using pointers
+note the differences between this function and testPassingStruct
+*/
+void testPassingStructPtr(struct Weather *w){
+	/*
+	first display the data in the Weather object pointed to by *w
+
+	recall that when you have a pointer and you want to access the value
+	you have to DEREFERENCE using the * operator
+	THEN you can access the fields using the . operator
+	it ends up looking like: (*pointer_name).field_name
+	this is kind of ugly syntax, I'll introduce a short-hand in a moment
+	*/
+
+	printf("inside testPassingStructPtr (before modification): Date %d, Temperature %.1f, Humidity %.1f\n",
+                (*w).date, (*w).temperature, (*w).humidity);
+	//modify the fields
+        (*w).date = -1;
+ 	//let's show assigning temperature and humidity using the -> operator
+	//the -> operator performs both the dereference and field access operations 
+	//(*w).temperature = -1.0;
+        w->temperature = -1.0;
+        w->humidity = -1.0;
+	printf("inside testPassingStructPtr (after modification): Date %d, Temperature %.1f, Humidity %.1f\n",
+                (*w).date, (*w).temperature, (*w).humidity);
+
+}
+
+
+
 
 int main(void){
 	/*
@@ -58,6 +90,10 @@ int main(void){
 	//print out the values of today_copy's fields to see whether it has changed
 	printf("today_copy (back in main after function call) Date %d, Temperature %.1f, Humidity %.1f\n",
                 today_copy.date, today_copy.temperature, today_copy.humidity);	
+	printf("Testing passing today_copy to the testPassingStructPtr function\n\n\n");
+	testPassingStructPtr(&today_copy);
+	printf("today_copy (back in main after passing pointer in function call) Date %d, Temperature %.1f, Humidity %.1f\n",
+                today_copy.date, today_copy.temperature, today_copy.humidity);
 
 
 }
